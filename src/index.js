@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -7,7 +7,9 @@ import firebaseConfig from './firebaseConfig';
 import 'bootstrap/dist/css/bootstrap.min.css'
 ReactDOM.render(
   <FirebaseAppProvider firebaseConfig = {firebaseConfig}>
-    <App />
+    <Suspense fallback = { 'hola'}>
+      <App />
+    </Suspense>
   </FirebaseAppProvider>
   ,
   document.getElementById('root')
