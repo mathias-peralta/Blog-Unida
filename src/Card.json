@@ -1,0 +1,29 @@
+[
+    {
+        "username": "Mathias Peralta",
+        "content": "Les comparto esta imagen:",
+        "time": "hace 2 dias",
+        "image": "https://picsum.photos/500/200"
+    },
+    {
+        "username": "Mathias Peralta",
+        "content": "Hola Compañeros, les queria realizar la siguiente consulta:",
+        "time": "hace un momento"
+    },
+    {
+        "username": "Jhon Doe",
+        "content": "Esta es mi primera publicacion",
+        "time": "hace 1 hora"
+    },
+    {
+        "username": "Alan Dioses",
+        "content": "",
+        "time": "hace 2 dias",
+        "image": "https://picsum.photos/500/200"
+    },
+    {
+        "username": "Alma Duarte",
+        "content": "Buenos dias chicos! les comento que el dia de mañana no tendremos clases..",
+        "time": "hace un momento"
+    }
+]

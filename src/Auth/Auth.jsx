@@ -3,7 +3,7 @@ import { useFirebaseApp, useUser } from 'reactfire';
 import 'firebase/auth';
 import BD from '../firebaseBD';
 import '../Auth/Auth.css'
-import Nav from '../Nav/Nav'
+import Main from '../Main/Main';
 
 export default () => {
     const [email, setEmail] = useState('');
@@ -151,7 +151,7 @@ export default () => {
                 </div>
             }
             {
-                user && <Nav />
+                user && <Main />
             }
         </div>
     )
