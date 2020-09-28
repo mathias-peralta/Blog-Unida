@@ -17,8 +17,8 @@ export default () => {
     //Esta funcion registra un nuevo usuario
     
     const saveUser = async () => {
-       await firebase.auth().createUserWithEmailAndPassword(email, password);
-        await BD.collection('Users').add({
+        await firebase.auth().createUserWithEmailAndPassword(email, password);
+        await BD.collection('Users').doc(firebase.auth().currentUser.uid).set({
             name:name,
             lastName: lastName,
             email:email,
