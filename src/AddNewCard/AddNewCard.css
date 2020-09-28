@@ -1,0 +1,12 @@
+.buttonCard {
+    width: 100%;
+    padding: 5px;
+    background: white;
+    border-radius: 5rem;
+    border: 0.2px solid black;
+    text-align: left;
+}
+
+.buttonCard:hover{
+    opacity: 50%;
+}

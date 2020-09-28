@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Nav from '../Nav/Nav';
 import Card from '../Card.json';
-
+import AddNewCard from '../AddNewCard/AddNewCard';
 class Main extends Component {
     
     render() {
@@ -17,6 +17,7 @@ class Main extends Component {
                         </div>
                     </div>
                     <div className="col-md-6">
+                        <AddNewCard />
                         {
                             Card.map(card => {
                                 return(
