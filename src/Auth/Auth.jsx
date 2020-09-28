@@ -15,6 +15,7 @@ export default () => {
     const [ passwordForm , setPasswordForm ] = useState('');
     const user = useUser()
     //Esta funcion registra un nuevo usuario
+    
     const saveUser = async () => {
        await firebase.auth().createUserWithEmailAndPassword(email, password);
         await BD.collection('Users').add({
@@ -22,11 +23,9 @@ export default () => {
             lastName: lastName,
             email:email,
         }).then(()=> {
-            let modalBody = document.getElementById('modalBody');
-            modalBody.innerHTML = 'Usuario registrado correctamente!';
+            alert('Registrado Exitosamente')
         }).catch(() => {
-            let modalBody = document.getElementById('modalBody');
-            modalBody.innerHTML = 'Algo salgio mal, intende de nuevo';
+            alert('Algo Salio mal, intente de nuevo')
         })
     }
     const loginUser = async () => {
@@ -43,7 +42,7 @@ export default () => {
                 !user &&
                 <div id ="body">
                     <nav className="navbar navbar-light bg-dark">
-                        <a className="navbar-brand text-primary">UNIDA-Blog</a>
+                        <a className="navbar-brand text-primary" href>UNIDA-Blog</a>
                         <div className="form-inline">
                             <button type="button" className="btn btn-primary my-2 my-sm-0" data-toggle="modal" data-target="#staticBackdrop">
                                 Registrarme
