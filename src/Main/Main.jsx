@@ -10,7 +10,12 @@ class Main extends Component {
            <div>
                <Nav/>
                 <div className="row mt-5">
-                    <div className="col-md-3"></div>
+                    <div className="col-md-3">
+                        <div className="card card-body">
+                            <h5>¡Bienvenido!</h5>
+                            <p>Mathias Peralta</p>
+                        </div>
+                    </div>
                     <div className="col-md-6">
                         {
                             Card.map(card => {
