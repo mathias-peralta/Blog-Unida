@@ -1,23 +1,46 @@
 import React, { Component } from 'react';
 import '../AddNewCard/AddNewCard.css';
 import BD from '../firebaseBD';
-
+import 'firebase/auth';
+import firebase from 'firebase'
 class AddNewCard extends Component {
     state = {
         card: [],
-        content: ''
+        content: '',
+        userID: '',
+        time: '',
+        name: '',
+        lastName: ''
     }
+    componentDidMount() {
+       let userData = BD.collection('Users').doc(firebase.auth().currentUser.uid)
+        userData.get().then(
+            (doc) => {
+                this.setState({
+                    name : doc.data().name,
+                    lastName: doc.data().lastName
+                })
+            }
+        )   
+    }
+
     contentInput = (ev) => {
         this.setState({
-            content: ev.target.value
+            content: ev.target.value,
         })
     }
      /* guardamos en la coleccion card*/
-    saveNewCard = () => {
-        BD.collection('Cards').doc().set({
-            content: this.state.content
+    saveNewCard = async () => {
+       await BD.collection('Cards').doc().set({
+            content: this.state.content,
+            userID: firebase.auth().currentUser.uid,
+            time: new Date(),
+            name: this.state.name,
+            lastName: this.state.lastName
         }).then(() => {
-            console.log('Guardado exitosamente');
+            let modalBody = document.getElementById('modalBody');
+            document.getElementById('modalButton').disabled = true;
+            modalBody.innerHTML = "Publicado exitosamente!"
         }).catch(() => {
             console.log('Algo salio mal, intente de nuevo');
         })
@@ -25,7 +48,7 @@ class AddNewCard extends Component {
     render() {
         return(
             <div>
-                <div className = "card card-body mb-3">
+                <div className = "card card-body mb-3" id = "AddCardBody">
                     <p><strong>Agrega una nueva publicacion</strong></p>
                     <button type="button" className="buttonCard text-muted" data-toggle="modal" data-target="#exampleModal">
                         ¿Deseas compartir algo?
@@ -39,7 +62,7 @@ class AddNewCard extends Component {
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                            <div className="modal-body ">
+                            <div className="modal-body " id = "modalBody">
                                 <div className="form-group">
                                     <textarea
                                         required
@@ -57,6 +80,7 @@ class AddNewCard extends Component {
                                     <button
                                         type="submit"
                                         className="btn btn-primary"
+                                        id = "modalButton"
                                         onClick = {()=> this.saveNewCard()}
                                     >Publicar</button>
                                 </div>

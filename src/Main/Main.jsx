@@ -9,7 +9,7 @@ import CardList from '../CardList/CardList'
 class Main extends Component{
     state = {
         name: '',
-        email: ' '
+        email: ''
     }
     componentDidMount() {
         let persona = BD.collection('Users').doc(firebase.auth().currentUser.uid)

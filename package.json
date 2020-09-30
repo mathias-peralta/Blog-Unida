@@ -11,7 +11,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
-    "reactfire": "^2.0.0-alpha.3"
+    "reactfire": "^2.0.0-alpha.3",
+    "timeago": "^1.6.7"
   },
   "scripts": {
     "start": "react-scripts start",

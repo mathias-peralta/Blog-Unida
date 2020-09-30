@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BD from '../firebaseBD';
+import Card from '../Card/Card'
 
 class CardList extends Component {
     state = {
@@ -24,7 +25,7 @@ class CardList extends Component {
         return(
         <p>{
             this.state.Card.map((card) =>  (
-                <p>{card.data.content}</p>
+                <Card datas = {card.data}/>
             ))    
         }</p>
         )
