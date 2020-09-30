@@ -4,7 +4,6 @@ import {useFirebaseApp} from 'reactfire';
 import Auth from './Auth/Auth'
 function App() {
   const firebase = useFirebaseApp();
-  console.log(firebase);
   return (
     <div className="App">
       <Auth />
