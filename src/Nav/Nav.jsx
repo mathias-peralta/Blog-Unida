@@ -12,7 +12,7 @@ function Nav(){
 
     return(
         <nav className="navbar navbar-light bg-dark">
-            <a className="navbar-brand text-white">UNIDA-Blog</a>
+            <a className="navbar-brand text-white" href>UNIDA-Blog</a>
             <div className="form-inline">
                 <button
                     className="btn btn-outline-danger my-2 my-sm-0"

@@ -55,7 +55,7 @@ class AddNewCard extends Component {
                             </div>
                                 <div className="modal-footer">
                                     <button
-                                        type="button"
+                                        type="submit"
                                         className="btn btn-primary"
                                         onClick = {()=> this.saveNewCard()}
                                     >Publicar</button>
