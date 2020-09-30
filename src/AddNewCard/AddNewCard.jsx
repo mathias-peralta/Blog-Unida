@@ -10,7 +10,8 @@ class AddNewCard extends Component {
         userID: '',
         time: '',
         name: '',
-        lastName: ''
+        lastName: '',
+        modalBody: true
     }
     componentDidMount() {
        let userData = BD.collection('Users').doc(firebase.auth().currentUser.uid)
@@ -38,9 +39,15 @@ class AddNewCard extends Component {
             name: this.state.name,
             lastName: this.state.lastName
         }).then(() => {
-            let modalBody = document.getElementById('modalBody');
-            document.getElementById('modalButton').disabled = true;
-            modalBody.innerHTML = "Publicado exitosamente!"
+            this.setState({
+                modalBody: false
+            })
+            setTimeout(() => {
+                this.setState({
+                    modalBody : true
+                })
+            },5000)
+
         }).catch(() => {
             console.log('Algo salio mal, intente de nuevo');
         })
@@ -63,18 +70,27 @@ class AddNewCard extends Component {
                                     </button>
                                 </div>
                             <div className="modal-body " id = "modalBody">
-                                <div className="form-group">
-                                    <textarea
-                                        required
-                                        name="cardContent"
-                                        id=""
-                                        cols="30"
-                                        rows="10"
-                                        className = "form-control"
-                                        placeholder = "Escribe algo aqui..."
-                                        onChange = {this.contentInput}
-                                    ></textarea>
-                                </div>
+                                {
+                                    this.state.modalBody 
+                                        ? 
+                                            <div className="form-group">
+                                                <textarea
+                                                    required
+                                                    name="cardContent"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                    className = "form-control"
+                                                    placeholder = "Escribe algo aqui..."
+                                                    onChange = {this.contentInput}
+                                                ></textarea>
+                                            </div>
+                                        : 
+                                        <div className = "text-center">
+                                            <i class="fa fa-check-circle fa-5x text-success" aria-hidden="true"></i>
+                                            <p>Publicado exitosamente!</p>
+                                        </div>
+                                }
                             </div>
                                 <div className="modal-footer">
                                     <button

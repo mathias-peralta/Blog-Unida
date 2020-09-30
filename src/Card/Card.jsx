@@ -4,7 +4,6 @@ import '../Card/Card.css'
 
 class Card  extends Component {
 
-
     render(){
         const { datas } = this.props
         console.log(this.props.datas.time.data);
