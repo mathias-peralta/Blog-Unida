@@ -113,8 +113,8 @@ export default () => {
         
                     <div className="row mt-5">
                         <div className="col-md-2"></div>
-                        <div className="col-md-8 container">
-                            <div className="card card-body w-50 m-auto">
+                        <div className="col-md-8">
+                            <div className="card card-body" id = "authCard">
                                 <h5 className = "text-center mb-3">Iniciar Sesión</h5>
                                 <div className="form-group">
                                     <label> Ingrese su correo:</label>

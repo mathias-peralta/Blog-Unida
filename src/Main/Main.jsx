@@ -5,11 +5,13 @@ import 'firebase/auth';
 import firebase from 'firebase'
 import BD from '../firebaseBD';
 import CardList from '../CardList/CardList'
+import '../Main/Main.css'
 
 class Main extends Component{
     state = {
         name: '',
-        email: ''
+        email: '',
+        lastName: ''
     }
     componentDidMount() {
         let persona = BD.collection('Users').doc(firebase.auth().currentUser.uid)
@@ -17,7 +19,8 @@ class Main extends Component{
             (doc) => {
                 this.setState({
                     name : doc.data().name,
-                    email: doc.data().email
+                    email: doc.data().email,
+                    lastName: doc.data().lastName
                 })
             }
         )   
@@ -25,17 +28,19 @@ class Main extends Component{
 
     render() {
         console.log(this.state.name);
-        const { name, email } = this.state
+        const { name, email, lastName } = this.state
         return(
             <div>
                 <Nav/>
                 {this.Person}
                 <div className="row mt-5">
                     <div className="col-md-3">
-                        <div className="card card-body">
+                        <div className="card card-body mb-3 m-auto" id = "cardLeft">
                             <h5>¡Bienvenido!</h5>
-                            <p>{name}</p>
-                            <p>{email}</p>
+                            <p>{name} {lastName}</p>
+                            <p><strong>Correo:</strong> {email} </p>
+                            <p><strong>Ultimo Ingreso:</strong> <span> Jueves 12</span></p>
+                            <p><strong>Publicaciones:</strong> <span> 3</span></p>
                         </div>
                     </div>
                     <div className="col-md-6">
