@@ -2,3 +2,9 @@
     max-width: 43.875rem;
     margin: auto;
 }
+#colmd10{
+    padding-left: 0px !important;
+}
+#deleteButton {
+    width: 42px !important;
+}

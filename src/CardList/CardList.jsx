@@ -25,7 +25,7 @@ class CardList extends Component {
         return(
         <p>{
             this.state.Card.map((card) =>  (
-                <Card datas = {card.data}/>
+                <Card datas = {card}/>
             ))    
         }</p>
         )
