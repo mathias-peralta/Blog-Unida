@@ -9,7 +9,9 @@ class CardList extends Component {
     }
 
     componentDidMount () {
-        BD.collection('Cards').onSnapshot((snapshot) => {
+        BD.collection('Cards')
+        .orderBy("time","desc")
+        .onSnapshot((snapshot) => {
             this.setState({
                 Card: snapshot.docs.map(card => {
                     return({
