@@ -27,19 +27,19 @@ class AddNewCard extends Component {
             <div>
                 <div className = "card card-body mb-3">
                     <p><strong>Agrega una nueva publicacion</strong></p>
-                    <button type="button" class="buttonCard text-muted" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" className="buttonCard text-muted" data-toggle="modal" data-target="#exampleModal">
                         ¿Deseas compartir algo?
                     </button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="text-cenet" id="exampleModalLabel">Comparte una nueva publicacion</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog modal-dialog-centered">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="text-cenet" id="exampleModalLabel">Comparte una nueva publicacion</h5>
+                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                            <div class="modal-body ">
+                            <div className="modal-body ">
                                 <div className="form-group">
                                     <textarea
                                         required
@@ -53,10 +53,10 @@ class AddNewCard extends Component {
                                     ></textarea>
                                 </div>
                             </div>
-                                <div class="modal-footer">
+                                <div className="modal-footer">
                                     <button
                                         type="button"
-                                        class="btn btn-primary"
+                                        className="btn btn-primary"
                                         onClick = {()=> this.saveNewCard()}
                                     >Publicar</button>
                                 </div>
