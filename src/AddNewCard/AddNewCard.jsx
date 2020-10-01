@@ -11,7 +11,8 @@ class AddNewCard extends Component {
         time: '',
         name: '',
         lastName: '',
-        modalBody: true
+        modalBody: true,
+        button: true
     }
     componentDidMount() {
        let userData = BD.collection('Users').doc(firebase.auth().currentUser.uid)
@@ -32,6 +33,7 @@ class AddNewCard extends Component {
     }
      /* guardamos en la coleccion card*/
     saveNewCard = async () => {
+
        await BD.collection('Cards').doc().set({
             content: this.state.content,
             userID: firebase.auth().currentUser.uid,
@@ -40,11 +42,13 @@ class AddNewCard extends Component {
             lastName: this.state.lastName
         }).then(() => {
             this.setState({
-                modalBody: false
+                modalBody: false,
+                button : false
             })
             setTimeout(() => {
                 this.setState({
-                    modalBody : true
+                    modalBody : true,
+                    button: true
                 })
             },5000)
 
@@ -93,12 +97,22 @@ class AddNewCard extends Component {
                                 }
                             </div>
                                 <div className="modal-footer">
-                                    <button
-                                        type="submit"
-                                        className="btn btn-primary"
-                                        id = "modalButton"
-                                        onClick = {()=> this.saveNewCard()}
-                                    >Publicar</button>
+                                { 
+                                    this.state.button 
+                                            ? 
+                                            <div>
+                                                <button
+                                                    type="submit"
+                                                    className="btn btn-primary"
+                                                    id = "modalButton"
+                                                    onClick = {()=> this.saveNewCard()}
+                                                    >Publicar
+                                                </button>
+                                    
+                                            </div>
+                                    :
+                                        ''
+                                }
                                 </div>
                             </div>
                         </div>
