@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import Nav from '../Nav/Nav';
 import AddNewCard from '../AddNewCard/AddNewCard';
 import 'firebase/auth';
-import firebase from 'firebase'
+import firebase from 'firebase';
 import BD from '../firebaseBD';
-import CardList from '../CardList/CardList'
-import '../Main/Main.css'
+import CardList from '../CardList/CardList';
+import '../Main/Main.css';
 
 class Main extends Component{
     state = {
@@ -31,7 +30,6 @@ class Main extends Component{
         const { name, email, lastName } = this.state
         return(
             <div>
-                <Nav/>
                 {this.Person}
                 <div className="row mt-5">
                     <div className="col-md-3">
@@ -48,10 +46,8 @@ class Main extends Component{
                         <CardList />
                     </div>
                     <div className="col-md-3"></div>
-
                 </div>
             </div>
-
         )
     }
 }
