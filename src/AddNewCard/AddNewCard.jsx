@@ -12,8 +12,10 @@ class AddNewCard extends Component {
         name: '',
         lastName: '',
         modalBody: true,
-        button: true
+        button: true,
+        cerrar: ''
     }
+    
     componentDidMount() {
        let userData = BD.collection('Users').doc(firebase.auth().currentUser.uid)
         userData.get().then(
@@ -47,10 +49,18 @@ class AddNewCard extends Component {
             })
             setTimeout(() => {
                 this.setState({
+                   
+                    cerrar: document.getElementById('cerrar').click(),
+                    
+                })
+            },2000)
+            setTimeout(() => {
+                this.setState({
+            
                     modalBody : true,
                     button: true
                 })
-            },5000)
+            },3000)
 
         }).catch(() => {
             console.log('Algo salio mal, intente de nuevo');
@@ -58,6 +68,7 @@ class AddNewCard extends Component {
     }
     render() {
         return(
+           
             <div>
                 <div className = "card card-body mb-3" id = "AddCardBody">
                     <p><strong>Agrega una nueva publicacion</strong></p>
@@ -69,7 +80,7 @@ class AddNewCard extends Component {
                             <div className="modal-content">
                                 <div className="modal-header">
                                     <h5 className="text-cenet" id="exampleModalLabel">Comparte una nueva publicacion</h5>
-                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close" id="cerrar">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -111,7 +122,10 @@ class AddNewCard extends Component {
                                     
                                             </div>
                                     :
-                                        ''
+                                    
+                                ''
+                                 
+
                                 }
                                 </div>
                             </div>
