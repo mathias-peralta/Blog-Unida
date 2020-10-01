@@ -25,11 +25,11 @@ class CardList extends Component {
     }
     render() {
         return(
-        <p>{
+        <div>{
             this.state.Card.map((card) =>  (
                 <Card datas = {card}/>
             ))    
-        }</p>
+        }</div>
         )
     }
 }

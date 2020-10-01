@@ -26,7 +26,6 @@ class Main extends Component{
     }
 
     render() {
-        console.log(this.state.name);
         const { name, email, lastName } = this.state
         return(
             <div>
