@@ -40,20 +40,59 @@ class AddNewCard extends Component {
         await this.setState({
             file: ev.target.files[0]
         });
-        const storageRef = firebase.storage().ref('/Imagenes/');
-        storageRef.child(this.state.file.name).put(this.state.file)
-            .then(() => {
-                console.log('subido correctamente!');
-                storageRef.child(this.state.file.name).getDownloadURL()
-                .then((url) => {
-                    this.setState({
-                        urlImage: url
+        console.log(this.state.file.type);
+        // eslint-disable-next-line default-case
+        switch (this.state.file.type) {
+            case 'application/pdf':
+                let storageRefPdf = firebase.storage().ref('/PDF/');
+                storageRefPdf.child(this.state.file.name).put(this.state.file)
+                    .then(() => {
+                        console.log('subido correctamente!');
+                        storageRefPdf.child(this.state.file.name).getDownloadURL()
+                        .then((url) => {
+                            this.setState({
+                                urlImage: url
+                            })
+                        })
+                    })
+                    .catch(() => {
+                        console.log('algo salio mal, intente de nuevo');
+                    })
+                    break;
+            case 'image/png':
+            let storageRef = firebase.storage().ref('/Imagenes/');
+            storageRef.child(this.state.file.name).put(this.state.file)
+                .then(() => {
+                    console.log('subido correctamente!');
+                    storageRef.child(this.state.file.name).getDownloadURL()
+                    .then((url) => {
+                        this.setState({
+                            urlImage: url
+                        })
                     })
                 })
-            })
-            .catch(() => {
-                console.log('algo salio mal, intente de nuevo');
-            })
+                .catch(() => {
+                    console.log('algo salio mal, intente de nuevo');
+                })
+                break;
+            case 'image/jpeg':
+                let storageRefjpg = firebase.storage().ref('/Imagenes/');
+                storageRefjpg.child(this.state.file.name).put(this.state.file)
+                    .then(() => {
+                        console.log('subido correctamente!');
+                        storageRefjpg.child(this.state.file.name).getDownloadURL()
+                        .then((url) => {
+                            this.setState({
+                                urlImage: url
+                            })
+                        })
+                    })
+                    .catch(() => {
+                        console.log('algo salio mal, intente de nuevo');
+                    })
+                    break;
+        }
+
     }
      /* guardamos en la coleccion card*/
     saveNewCard = async () => {
