@@ -3,6 +3,7 @@ import '../AddNewCard/AddNewCard.css';
 import BD from '../firebaseBD';
 import 'firebase/auth';
 import firebase from 'firebase'
+import 'firebase/storage'
 class AddNewCard extends Component {
     state = {
         card: [],
@@ -13,7 +14,9 @@ class AddNewCard extends Component {
         lastName: '',
         modalBody: true,
         button: true,
-        cerrar: ''
+        cerrar: '',
+        file: null,
+        urlImage: ''
     }
     
     componentDidMount() {
@@ -33,16 +36,36 @@ class AddNewCard extends Component {
             content: ev.target.value,
         })
     }
+    saveFile = async (ev) => {
+        await this.setState({
+            file: ev.target.files[0]
+        });
+        const storageRef = firebase.storage().ref('/Imagenes/');
+        storageRef.child(this.state.file.name).put(this.state.file)
+            .then(() => {
+                console.log('subido correctamente!');
+                storageRef.child(this.state.file.name).getDownloadURL()
+                .then((url) => {
+                    this.setState({
+                        urlImage: url
+                    })
+                })
+            })
+            .catch(() => {
+                console.log('algo salio mal, intente de nuevo');
+            })
+    }
      /* guardamos en la coleccion card*/
     saveNewCard = async () => {
-
+        
        await BD.collection('Cards').doc().set({
             content: this.state.content,
             userID: firebase.auth().currentUser.uid,
             time: new Date(),
             name: this.state.name,
-            lastName: this.state.lastName
-        }).then(() => {
+            lastName: this.state.lastName,
+            url: this.state.urlImage
+            }).then(() => {
             this.setState({
                 modalBody: false,
                 button : false
@@ -65,6 +88,7 @@ class AddNewCard extends Component {
         }).catch(() => {
             console.log('Algo salio mal, intente de nuevo');
         })
+
     }
     render() {
         return(
@@ -88,6 +112,7 @@ class AddNewCard extends Component {
                                 {
                                     this.state.modalBody 
                                         ? 
+                                        <div>
                                             <div className="form-group">
                                                 <textarea
                                                     required
@@ -100,6 +125,14 @@ class AddNewCard extends Component {
                                                     onChange = {this.contentInput}
                                                 ></textarea>
                                             </div>
+                                            <div className="form-group">
+                                                <input
+                                                    type="file"
+                                                    className = "form-group"
+                                                    onChange = {this.saveFile}
+                                                />
+                                            </div>
+                                        </div>
                                         : 
                                         <div className = "text-center">
                                             <i class="fa fa-check-circle fa-5x text-success" aria-hidden="true"></i>

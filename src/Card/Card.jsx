@@ -50,6 +50,9 @@ class Card  extends Component {
                     </div>
                 </div>
                     <p> {this.props.datas.data.content}</p>
+                    <div>
+                        <img src={this.props.datas.data.url} alt="" className = "img-responsive w-100"/>
+                    </div>
             </div>
         )
     }
